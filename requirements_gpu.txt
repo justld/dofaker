@@ -1,0 +1,3 @@
+onnxruntime-gpu
+moviepy
+gradio
