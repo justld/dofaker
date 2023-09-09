@@ -59,6 +59,7 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 |dst_face_paths|The images includding faces in source to be swapped. If None, replace all faces in source media.|
 |src_face_paths|The images includding faces in source to be swapped|
 
+
 # Attention
 Do not apply this software to scenarios that violate morality, law, or infringement. The consequences caused by using this software shall be borne by the user themselves.
 
