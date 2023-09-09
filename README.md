@@ -26,13 +26,22 @@ All weights can be downloaded from [insightface](https://github.com/deepinsight/
 download face det model and face swap model in :[google drive](https://drive.google.com/drive/folders/1R6yMDQiHQg938M5GIz4_mOOhpF8ybrv9?usp=sharing) or [baidu drive(extract code:tkf3)](https://pan.baidu.com/s/1sF3QbwAK1sVqdie1KqgkkA)
 
 The dir looks like follow:
+
 |-dofaker
+
 |-docs
+
 |-weights
+
 ----|-models
+
 --------|-buffalo_l.zip
+
 --------|-inswapper_128.onnx
 
+|-run.py
+
+|-web_ui.py
 
 # 三、Usage
 You can use dofaker in web_ui or command line.
