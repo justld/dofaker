@@ -1,6 +1,8 @@
 # DoFaker: A very simple face swapping tool
 Insightface based face swapping tool to replace faces in videos or images.
 
+
+
 # 一、Installation
 For GPU users, replace all 'requirements.txt' with 'requirements_gpu.txt' in the follow commands.
 
@@ -9,16 +11,16 @@ create virtual environment:
 ```bash
 git clone https://github.com/justld/dofaker.git
 cd dofaker
-conda create dofaker
+conda create -n dofaker
 conda activate dofaker
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## pip install
 ```bash
 git clone https://github.com/justld/dofaker.git
 cd dofaker
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 # 二、Download Weight
@@ -27,14 +29,14 @@ download face det model and face swap model in :[google drive](https://drive.goo
 
 The dir looks like follow:
 
-|-dofaker   
-|-docs    
-|-weights    
-----|-models    
---------|-buffalo_l.zip     
---------|-inswapper_128.onnx    
-|-run.py    
-|-web_ui.py     
+|-dofaker
+|-docs
+|-weights
+----|-models
+--------|-buffalo_l.zip
+--------|-inswapper_128.onnx
+|-run.py
+|-web_ui.py
 
 # 三、Usage
 You can use dofaker in web_ui or command line.

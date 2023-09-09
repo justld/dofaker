@@ -1,3 +1,4 @@
 onnxruntime-gpu
 moviepy
 gradio
+insightface
