@@ -27,21 +27,14 @@ download face det model and face swap model in :[google drive](https://drive.goo
 
 The dir looks like follow:
 
-|-dofaker
-
-|-docs
-
-|-weights
-
-----|-models
-
---------|-buffalo_l.zip
-
---------|-inswapper_128.onnx
-
-|-run.py
-
-|-web_ui.py
+|-dofaker   
+|-docs    
+|-weights    
+----|-models    
+--------|-buffalo_l.zip     
+--------|-inswapper_128.onnx    
+|-run.py    
+|-web_ui.py     
 
 # 三、Usage
 You can use dofaker in web_ui or command line.
