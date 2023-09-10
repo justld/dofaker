@@ -81,5 +81,8 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 # 声明
 禁止将本软件用于违反法律、道德，侵权等场合，本软件仅供学习用途，使用本软件造成的一切后果由使用者承担。
 
+# 赞助
+[您的支持是我们持续开发的动力](https://justld.github.io/)
+
 # Thanks
 [insightface](https://github.com/deepinsight/insightface)

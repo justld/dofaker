@@ -82,5 +82,8 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 # Attention
 Do not apply this software to scenarios that violate morality, law, or infringement. The consequences caused by using this software shall be borne by the user themselves.
 
+# Sponsor
+[Thank you for support](https://www.paypal.com/paypalme/justldu)
+
 # Thanks
 [insightface](https://github.com/deepinsight/insightface)
