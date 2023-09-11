@@ -12,7 +12,7 @@
 </p>
 
 # 视频教程
-![B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)
+[B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)
 
 
 # 快速开始
