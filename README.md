@@ -1,3 +1,5 @@
+English|[简体中文](README_ch.md)
+
 # DoFaker: A very simple face swapping tool
 Insightface based face swapping tool to replace faces in videos or images.
 
@@ -34,12 +36,16 @@ pip install -r requirements.txt
 All weights can be downloaded from [insightface](https://github.com/deepinsight/insightface), you can also
 download face det model and face swap model in :[google drive](https://drive.google.com/drive/folders/1R6yMDQiHQg938M5GIz4_mOOhpF8ybrv9?usp=sharing) or [baidu drive(extract code:tkf3)](https://pan.baidu.com/s/1sF3QbwAK1sVqdie1KqgkkA)
 
-The dir looks like follow:
+Unzip the zip file, the dir looks like follow:
 ```
 |-dofaker
 |-docs
 |-weights
 ----|-models
+--------|-buffalo_l
+----------|-1k3d68.onnx
+----------|-2d106det.onnx
+----------|-...
 --------|-buffalo_l.zip
 --------|-inswapper_128.onnx
 |-run.py
@@ -75,6 +81,9 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 
 # Attention
 Do not apply this software to scenarios that violate morality, law, or infringement. The consequences caused by using this software shall be borne by the user themselves.
+
+# Sponsor
+[Thank you for support](https://www.paypal.com/paypalme/justldu)
 
 # Thanks
 [insightface](https://github.com/deepinsight/insightface)

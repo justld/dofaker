@@ -5,7 +5,6 @@ from dofaker import DoFaker
 def swap(input_path, dst_path, src_path):
     faker = DoFaker()
     output_path = faker.run(input_path, dst_path, src_path)
-    print(output_path)
     return output_path
 
 
@@ -48,5 +47,4 @@ with gr.Blocks(title='DoFaker') as web_ui:
                 convert_button.click(fn=swap, inputs=[video_input, dst_face_image, src_face_image], outputs=[output_video], api_name='video swap')
 
 
-
-web_ui.launch(share=True)
+web_ui.launch()
