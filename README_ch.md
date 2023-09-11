@@ -11,6 +11,19 @@
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
+# 快速开始
+克隆代码，安装dofaker
+```bash
+git clone https://github.com/justld/dofaker.git
+cd dofaker
+conda create -n dofaker
+pip install -e .
+```
+打开web服务（权重自动下载）:
+```bash
+dofaker
+```
+
 
 # 安装
 对于GPU用户（您需要自行安装好cuda环境），使用'requirements_gpu.txt'替代下列命令行中的'requirements.txt'。

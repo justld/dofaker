@@ -11,6 +11,19 @@ Insightface based face swapping tool to replace faces in videos or images.
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
+# Qiuck Start
+install dofaker
+```bash
+git clone https://github.com/justld/dofaker.git
+cd dofaker
+conda create -n dofaker
+pip install -e .
+```
+open web ui(The model weights will be downloaded automatically):
+```bash
+dofaker
+```
+
 
 # 一、Installation
 For GPU users, replace all 'requirements.txt' with 'requirements_gpu.txt' in the follow commands.
