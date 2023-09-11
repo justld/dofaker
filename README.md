@@ -12,7 +12,7 @@ Insightface based face swapping tool to replace faces in videos or images.
 </p>
 
 # Video Tutorial
-![dofaker：face swap so easy](https://www.youtube.com/watch?v=qd1-JSpiZao)
+[dofaker：face swap so easy](https://www.youtube.com/watch?v=qd1-JSpiZao)
 
 
 
