@@ -11,6 +11,11 @@ Insightface based face swapping tool to replace faces in videos or images.
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
+# Video Tutorial
+![dofaker：face swap so easy](https://www.youtube.com/watch?v=qd1-JSpiZao)
+
+
+
 # Qiuck Start
 install dofaker
 ```bash

@@ -11,6 +11,10 @@
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
+# 视频教程
+![B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)
+
+
 # 快速开始
 克隆代码，安装dofaker
 ```bash
