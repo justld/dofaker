@@ -23,6 +23,7 @@ cd dofaker
 conda create -n dofaker
 conda activate dofaker
 pip install -r requirements.txt
+pip install -e .
 ```
 
 ## pip install
@@ -30,6 +31,7 @@ pip install -r requirements.txt
 git clone https://github.com/justld/dofaker.git
 cd dofaker
 pip install -r requirements.txt
+pip install -e .
 ```
 
 # 二、Download Weight
