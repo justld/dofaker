@@ -5,7 +5,7 @@ import cv2
 from moviepy.editor import VideoFileClip
 
 from .face_det import FaceAnalysis
-from .face_swap import InSwapper
+from .utils import get_swapper_model
 
 
 class DoFaker:
@@ -20,11 +20,7 @@ class DoFaker:
         self.log_iters = log_iters
         self.det_model = FaceAnalysis(name=face_det_model, root=face_det_model_dir)
         self.det_model.prepare(ctx_id=0, det_size=(640, 640))
-
-        if face_swap_model.lower() == 'inswapper':
-            self.swapper_model = InSwapper(model_file=face_swap_model_path)
-        else:
-            raise UserWarning('The swaper model {} not support.'.format(face_swap_model))
+        self.swapper_model = get_swapper_model(name=face_swap_model, onnx_path=face_swap_model_path)
 
 
     def run(self, input_path:str, dst_face_paths, src_face_paths, output_dir='output'):
