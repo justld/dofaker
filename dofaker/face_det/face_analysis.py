@@ -12,13 +12,18 @@ from insightface import model_zoo
 from insightface.utils import ensure_available
 from insightface.app.common import Face
 
+from dofaker.utils import download_file, get_model_url
+
 __all__ = ['FaceAnalysis']
 
 class FaceAnalysis:
     def __init__(self, name='buffalo_l', root='weights', allowed_modules=None, **kwargs):
+        self.model_dir, _ = download_file(get_model_url(name), save_dir=root, overwrite=False)
         onnxruntime.set_default_logger_severity(3)
+
         self.models = {}
-        self.model_dir = ensure_available('models', name, root=root)
+        # self.model_dir = ensure_available('models', name, root=root)
+        print(self.model_dir)
         onnx_files = glob.glob(osp.join(self.model_dir, '*.onnx'))
         onnx_files = sorted(onnx_files)
         for onnx_file in onnx_files:

@@ -5,22 +5,25 @@ import cv2
 from moviepy.editor import VideoFileClip
 
 from .face_det import FaceAnalysis
-from .utils import get_swapper_model
+from dofaker.face_swap import get_swapper_model
 
 
 class DoFaker:
     def __init__(self,
                  face_det_model='buffalo_l',
                  face_swap_model='inswapper',
-                 face_det_model_dir='weights',
-                 face_swap_model_path='weights/models/inswapper_128.onnx',
+                 face_det_model_dir='weights/models',
+                 face_swap_model_dir='weights/models',
                  face_sim_thre=0.5,
                  log_iters=10):
         self.face_sim_thre = face_sim_thre
         self.log_iters = log_iters
+
         self.det_model = FaceAnalysis(name=face_det_model, root=face_det_model_dir)
         self.det_model.prepare(ctx_id=0, det_size=(640, 640))
-        self.swapper_model = get_swapper_model(name=face_swap_model, onnx_path=face_swap_model_path)
+
+
+        self.swapper_model = get_swapper_model(name=face_swap_model, root=face_swap_model_dir)
 
 
     def run(self, input_path:str, dst_face_paths, src_face_paths, output_dir='output'):
