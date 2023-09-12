@@ -19,7 +19,7 @@ setup(
     license='GPL 3.0',
     entry_points = {
         'console_scripts': [
-            'dofaker = web_ui',
+            'dofaker = web_ui:main',
         ]
     }
 )
