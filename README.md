@@ -46,7 +46,7 @@ bash test.sh
 
 # Install from source code
 ## 一、Installation
-For GPU users, replace all 'requirements.txt' with 'requirements_gpu.txt' in the follow commands.
+For cpu users, replace all 'requirements_gpu.txt' with 'requirements.txt' in the follow commands.
 
 ### conda install
 create virtual environment:
@@ -55,7 +55,7 @@ git clone https://github.com/justld/dofaker.git
 cd dofaker
 conda create -n dofaker
 conda activate dofaker
-pip install -r requirements.txt
+pip install -r requirements_gpu.txt
 pip install -e .
 ```
 
@@ -63,7 +63,7 @@ pip install -e .
 ```bash
 git clone https://github.com/justld/dofaker.git
 cd dofaker
-pip install -r requirements.txt
+pip install -r requirements_gpu.txt
 pip install -e .
 ```
 
