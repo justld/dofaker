@@ -1,7 +1,7 @@
 [English](README.md)|简体中文
 
 # DoFaker: 一个简单易用的换脸工具
-基于insightface开发，可以轻松替换视频或图片中的人脸。支持windows和linux系统。
+基于insightface开发，可以轻松替换视频或图片中的人脸。支持windows和linux系统，CPU和GPU推理。onnxruntime推理，无需pytorch。
 
 <p align="center">
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">

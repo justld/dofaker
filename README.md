@@ -1,7 +1,7 @@
 English|[简体中文](README_ch.md)
 
 # DoFaker: A very simple face swapping tool
-Insightface based face swapping tool to replace faces in videos or images. Windows and linux support.
+Insightface based face swapping tool to replace faces in videos or images. Windows and linux support CPU and GPU. Onnxruntime inference without pytorch.
 
 <p align="center">
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">
