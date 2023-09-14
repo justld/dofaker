@@ -107,3 +107,5 @@ Do not apply this software to scenarios that violate morality, law, or infringem
 
 # Thanks
 [insightface](https://github.com/deepinsight/insightface)
+[GFPGAN](https://github.com/TencentARC/GFPGAN)
+[GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)

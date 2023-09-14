@@ -103,3 +103,5 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 
 # Thanks
 [insightface](https://github.com/deepinsight/insightface)
+[GFPGAN](https://github.com/TencentARC/GFPGAN)
+[GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)

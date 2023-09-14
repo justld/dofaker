@@ -7,6 +7,10 @@ WEIGHT_URLS = {
     'https://github.com/justld/dofaker/releases/download/v0.0/buffalo_sc.zip',
     'inswapper':
     'https://github.com/justld/dofaker/releases/download/v0.0/inswapper_128.onnx',
+    'gfpgan':
+    'https://github.com/justld/dofaker/releases/download/v0.0/GFPGANv1.3.onnx',
+    'bsrgan':
+    'https://github.com/justld/dofaker/releases/download/v0.0/bsrgan_4.onnx',
 }
 
 

@@ -5,6 +5,7 @@ import cv2
 from moviepy.editor import VideoFileClip
 
 from .face_det import FaceAnalysis
+from .super_resolution import BSRGAN
 from dofaker.face_swap import get_swapper_model
 
 
@@ -13,19 +14,31 @@ class DoFaker:
     def __init__(self,
                  face_det_model='buffalo_l',
                  face_swap_model='inswapper',
+                 image_sr_model='bsrgan',
                  face_det_model_dir='weights/models',
                  face_swap_model_dir='weights/models',
+                 image_sr_model_dir='weights/models',
                  face_sim_thre=0.5,
-                 log_iters=10):
+                 log_iters=10,
+                 use_enhancer=True,
+                 use_sr=True,
+                 scale=1):
         self.face_sim_thre = face_sim_thre
         self.log_iters = log_iters
 
         self.det_model = FaceAnalysis(name=face_det_model,
                                       root=face_det_model_dir)
-        self.det_model.prepare(ctx_id=0, det_size=(640, 640))
+        self.det_model.prepare(ctx_id=1, det_size=(640, 640))
 
         self.swapper_model = get_swapper_model(name=face_swap_model,
-                                               root=face_swap_model_dir)
+                                               root=face_swap_model_dir,
+                                               use_enhancer=use_enhancer)
+        if use_sr:
+            self.sr = BSRGAN(name=image_sr_model,
+                             root=image_sr_model_dir,
+                             scale=scale)
+        else:
+            self.sr = None
 
     def run(self,
             input_path: str,
@@ -141,6 +154,8 @@ class DoFaker:
         faces = []
         for image_path in image_paths:
             image = cv2.imread(image_path)
+            assert image is not None, "the source image is None, please check your image {} format.".format(
+                image_path)
             img_faces = self.det_model.get(image, max_num=1)
             assert len(
                 img_faces
@@ -163,6 +178,8 @@ class DoFaker:
                                              image_faces[idx],
                                              src_faces[i],
                                              paste_back=True)
+        if self.sr is not None:
+            res = self.sr.get(res, image_format='bgr')[:, :, ::-1]
         return res
 
     def swap_all_faces(self, image, src_faces: list) -> np.ndarray:
@@ -177,6 +194,8 @@ class DoFaker:
                                          image_face,
                                          src_faces[0],
                                          paste_back=True)
+        if self.sr is not None:
+            res = self.sr.get(res, image_format='bgr')[:, :, ::-1]
         return res
 
     def get_faces_embeddings(self, faces):
