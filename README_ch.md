@@ -30,6 +30,7 @@ git clone https://github.com/justld/dofaker.git
 cd dofaker
 conda create -n dofaker
 conda activate dofaker
+pip install onnxruntime # onnxruntime-gpu
 pip install -e .
 ```
 
@@ -45,7 +46,7 @@ bash test.sh
 
 
 ## 源码安装
-对于CPU用户，使用'requirements.txt'替代下列命令行中的'requirements_gpu.txt'。
+手动安装onnxruntime或onnxruntime-gpu.
 
 ### conda install
 创建conda虚拟环境:
@@ -54,14 +55,16 @@ git clone https://github.com/justld/dofaker.git
 cd dofaker
 conda create -n dofaker
 conda activate dofaker
-pip install -r requirements_gpu.txt
+pip install -r requirements.txt
+pip install onnxruntime # onnxruntime-gpu
 ```
 
 ### pip install
 ```bash
 git clone https://github.com/justld/dofaker.git
 cd dofaker
-pip install -r requirements_gpu.txt
+pip install -r requirements.txt
+pip install onnxruntime # onnxruntime-gpu
 ```
 
 ## 二、Download Weight

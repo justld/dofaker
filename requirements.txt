@@ -1,4 +1,5 @@
-onnxruntime
 moviepy
 gradio
 insightface
+flake8
+yapf
