@@ -29,10 +29,10 @@ def download_file(url: str, save_dir='./', overwrite=False, unzip=True):
                 total_length = int(total_length)
                 print('file length: ', int(total_length / 1024. + 0.5))
                 for chunk in tqdm(r.iter_content(chunk_size=1024),
-                                    total=int(total_length / 1024. + 0.5),
-                                    unit='KB',
-                                    unit_scale=False,
-                                    dynamic_ncols=True):
+                                  total=int(total_length / 1024. + 0.5),
+                                  unit='KB',
+                                  unit_scale=False,
+                                  dynamic_ncols=True):
                     f.write(chunk)
     if unzip and file_path.endswith('.zip'):
         save_dir = file_path.split('.')[0]

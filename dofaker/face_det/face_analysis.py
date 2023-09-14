@@ -1,4 +1,3 @@
-
 '''
 The following code references:: https://github.com/deepinsight/insightface
 '''
@@ -16,13 +15,20 @@ from dofaker.utils import download_file, get_model_url
 
 __all__ = ['FaceAnalysis']
 
+
 class FaceAnalysis:
-    def __init__(self, name='buffalo_l', root='weights', allowed_modules=None, **kwargs):
-        self.model_dir, _ = download_file(get_model_url(name), save_dir=root, overwrite=False)
+
+    def __init__(self,
+                 name='buffalo_l',
+                 root='weights',
+                 allowed_modules=None,
+                 **kwargs):
+        self.model_dir, _ = download_file(get_model_url(name),
+                                          save_dir=root,
+                                          overwrite=False)
         onnxruntime.set_default_logger_severity(3)
 
         self.models = {}
-        # self.model_dir = ensure_available('models', name, root=root)
         print(self.model_dir)
         onnx_files = glob.glob(osp.join(self.model_dir, '*.onnx'))
         onnx_files = sorted(onnx_files)
@@ -33,23 +39,28 @@ class FaceAnalysis:
             elif allowed_modules is not None and model.taskname not in allowed_modules:
                 print('model ignore:', onnx_file, model.taskname)
                 del model
-            elif model.taskname not in self.models and (allowed_modules is None or model.taskname in allowed_modules):
-                print('find model:', onnx_file, model.taskname, model.input_shape, model.input_mean, model.input_std)
+            elif model.taskname not in self.models and (allowed_modules is None
+                                                        or model.taskname
+                                                        in allowed_modules):
+                print('find model:', onnx_file, model.taskname,
+                      model.input_shape, model.input_mean, model.input_std)
                 self.models[model.taskname] = model
             else:
-                print('duplicated model task type, ignore:', onnx_file, model.taskname)
+                print('duplicated model task type, ignore:', onnx_file,
+                      model.taskname)
                 del model
         assert 'detection' in self.models
         self.det_model = self.models['detection']
-
 
     def prepare(self, ctx_id, det_thresh=0.5, det_size=(640, 640)):
         self.det_thresh = det_thresh
         assert det_size is not None, "det_size can't be None."
         self.det_size = det_size
         for taskname, model in self.models.items():
-            if taskname=='detection':
-                model.prepare(ctx_id, input_size=det_size, det_thresh=det_thresh)
+            if taskname == 'detection':
+                model.prepare(ctx_id,
+                              input_size=det_size,
+                              det_thresh=det_thresh)
             else:
                 model.prepare(ctx_id)
 
@@ -68,7 +79,7 @@ class FaceAnalysis:
                 kps = kpss[i]
             face = Face(bbox=bbox, kps=kps, det_score=det_score)
             for taskname, model in self.models.items():
-                if taskname=='detection':
+                if taskname == 'detection':
                     continue
                 model.get(img, face)
             ret.append(face)
@@ -88,8 +99,9 @@ class FaceAnalysis:
                     color = (0, 0, 255)
                     if l == 0 or l == 3:
                         color = (0, 255, 0)
-                    cv2.circle(dimg, (kps[l][0], kps[l][1]), 1, color,
-                               2)
+                    cv2.circle(dimg, (kps[l][0], kps[l][1]), 1, color, 2)
             if face.gender is not None and face.age is not None:
-                cv2.putText(dimg,'%s,%d'%(face.sex,face.age), (box[0]-1, box[1]-4),cv2.FONT_HERSHEY_COMPLEX,0.7,(0,255,0),1)
+                cv2.putText(dimg, '%s,%d' % (face.sex, face.age),
+                            (box[0] - 1, box[1] - 4), cv2.FONT_HERSHEY_COMPLEX,
+                            0.7, (0, 255, 0), 1)
         return dimg
