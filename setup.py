@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-with open('requirements.txt') as file:
+with open('requirements_gpu.txt') as file:
     REQUIRED_PACKAGES = file.read()
 
 setup(name='dofaker',

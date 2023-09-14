@@ -1,7 +1,7 @@
 [English](README.md)|简体中文
 
 # DoFaker: 一个简单易用的换脸工具
-基于insightface开发，可以轻松替换视频或图片中的人脸。
+基于insightface开发，可以轻松替换视频或图片中的人脸。支持windows和linux系统。
 
 <p align="center">
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">
@@ -10,6 +10,14 @@
 <p align="center">
 <img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
+
+<p align="center">
+    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300"/>
+</p>
+
+# 更新
+- 2023/9/14 更新脸部增强算法(GFPGAN)和超分算法(BSRGAN)
 
 # 视频教程
 [B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)
@@ -21,18 +29,25 @@
 git clone https://github.com/justld/dofaker.git
 cd dofaker
 conda create -n dofaker
+conda activate dofaker
 pip install -e .
 ```
+
 打开web服务（权重自动下载）:
 ```bash
 dofaker
 ```
 
+命令行：
+```
+bash test.sh
+```
 
-# 安装
+
+## 源码安装
 对于GPU用户（您需要自行安装好cuda环境），使用'requirements_gpu.txt'替代下列命令行中的'requirements.txt'。
 
-## conda install
+### conda install
 创建conda虚拟环境:
 ```bash
 git clone https://github.com/justld/dofaker.git
@@ -42,15 +57,15 @@ conda activate dofaker
 pip install -r requirements.txt
 ```
 
-## pip install
+### pip install
 ```bash
 git clone https://github.com/justld/dofaker.git
 cd dofaker
 pip install -r requirements.txt
 ```
 
-# 二、Download Weight
-所有的权重来自[insightface](https://github.com/deepinsight/insightface), 您也可以在链接[google drive](https://drive.google.com/drive/folders/1R6yMDQiHQg938M5GIz4_mOOhpF8ybrv9?usp=sharing)或 [baidu drive(extract code:tkf3)](https://pan.baidu.com/s/1sF3QbwAK1sVqdie1KqgkkA)中下载。
+## 二、Download Weight
+所有的权重来自[release](https://github.com/justld/dofaker/releases)，权重来自底部的链接。
 
 解压下载好的权重文件，目录结构如下所示:
 ```
@@ -64,20 +79,22 @@ pip install -r requirements.txt
 ----------|-...
 --------|-buffalo_l.zip
 --------|-inswapper_128.onnx
+--------|-GFPGANv1.3.onnx
+--------|-bsrgan_4.onnx
 |-run.py
 |-web_ui.py
 ```
 
 
-# 三、使用
+## 三、使用
 您可以以web或命令行的方式进行使用
-## web ui
+### web ui
 web使用方式只支持单个人脸替换，同时替换多个人脸请使用命令行的方式：
 ```bash
 python web_ui.py
 ```
 
-## command
+### command
 命令行的使用方法支持一次性多个人脸替换：
 ```bash
 python run.py --source "image or video path to be swapped" --dst_face_paths "dst_face1_path" "dst_face2_path" ... --src_face_paths "src_face1_path" "src_face2_path" ...
@@ -102,6 +119,7 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 [您的支持是我们持续开发的动力](https://justld.github.io/)
 
 # Thanks
-[insightface](https://github.com/deepinsight/insightface)
-[GFPGAN](https://github.com/TencentARC/GFPGAN)
-[GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)
+- [insightface](https://github.com/deepinsight/insightface)  
+- [GFPGAN](https://github.com/TencentARC/GFPGAN)  
+- [GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)  
+- [BSRGAN](https://github.com/cszn/BSRGAN)  
