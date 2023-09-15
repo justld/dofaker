@@ -19,8 +19,9 @@
 # 更新
 - 2023/9/14 更新脸部增强算法(GFPGAN)和超分算法(BSRGAN)
 
-# 视频教程
-[B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)
+# 教程
+[B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)   
+[AiStudio在线免费体验](https://aistudio.baidu.com/projectdetail/6759162)   
 
 
 # 快速开始
