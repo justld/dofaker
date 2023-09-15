@@ -6,16 +6,16 @@
 基于insightface开发，可以轻松替换视频或图片中的人脸。支持windows和linux系统，CPU和GPU推理。onnxruntime推理，无需pytorch。
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150" href="https://www.bilibili.com/video/BV1b8411i7A8/"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150" href="https://www.bilibili.com/video/BV1b8411i7A8/">
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">
 </p>
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
 <p align="center">
-    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
-    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300"/>
 </p>
 
 # 更新

@@ -6,16 +6,16 @@ English|[简体中文](README_ch.md)
 Insightface based face swapping tool to replace faces in videos or images. Windows and linux support CPU and GPU. Onnxruntime inference without pytorch.
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150" href="https://www.youtube.com/watch?v=qd1-JSpiZao"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150" href="https://www.youtube.com/watch?v=qd1-JSpiZao">
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">
 </p>
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300" href="https://www.youtube.com/watch?v=qd1-JSpiZao"/>
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
 </p>
 
 <p align="center">
-    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300" href="https://www.youtube.com/watch?v=qd1-JSpiZao"/>
-    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300" href="https://www.youtube.com/watch?v=qd1-JSpiZao"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300"/>
 </p>
 
 # Update
