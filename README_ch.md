@@ -1,28 +1,29 @@
 [English](README.md)|简体中文
+
 [![aistudio](https://img.shields.io/static/v1?label=aistudio&message=aistudio&color=blue)](https://aistudio.baidu.com/projectdetail/6759162)
 
 # DoFaker: 一个简单易用的换脸工具
 基于insightface开发，可以轻松替换视频或图片中的人脸。支持windows和linux系统，CPU和GPU推理。onnxruntime推理，无需pytorch。
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150">
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/source.gif" width="300" height="150" href="https://www.bilibili.com/video/BV1b8411i7A8/"><img src="https://github.com/justld/dofaker/blob/main/docs/images/trump.jpg" width="300" height="150" href="https://www.bilibili.com/video/BV1b8411i7A8/">
 </p>
 
 <p align="center">
-<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300"/>
+<img src="https://github.com/justld/dofaker/blob/main/docs/images/swapped.gif" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
 </p>
 
 <p align="center">
-    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300"/>
-    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/test/multi.png" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
+    <img src="https://github.com/justld/dofaker/blob/main/docs/images/multi.png" width="600" height="300" href="https://www.bilibili.com/video/BV1b8411i7A8/"/>
 </p>
 
 # 更新
 - 2023/9/14 更新脸部增强算法(GFPGAN)和超分算法(BSRGAN)
 
 # 教程
-[B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)   
-[AiStudio在线免费体验](https://aistudio.baidu.com/projectdetail/6759162)   
+- [B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)   
+- [AiStudio在线免费体验](https://aistudio.baidu.com/projectdetail/6759162)   
 
 
 # 快速开始
