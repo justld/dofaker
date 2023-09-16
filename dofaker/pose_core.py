@@ -102,7 +102,6 @@ class PoseSwapper:
                 transferred_image = self.transfer_pose(source,
                                                        frame,
                                                        image_format='bgr')
-                cv2.imwrite('output/{}.jpg'.format(i), transferred_image)
                 i += 1
                 if i % self.log_iters == 0:
                     print('processing {}/{}'.format(i, total_frames))
