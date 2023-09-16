@@ -1,6 +1,4 @@
-import time
 import numpy as np
-import onnxruntime
 import cv2
 import onnx
 from onnx import numpy_helper
@@ -10,23 +8,17 @@ from insightface.utils import face_align
 from .base_swapper import BaseSwapper
 
 from dofaker.utils import download_file, get_model_url
-from dofaker.face_enhance import GFPGAN
 
 
 class InSwapper(BaseSwapper):
 
-    def __init__(self,
-                 name='inswapper',
-                 root='weights/models',
-                 use_enhancer=True):
+    def __init__(self, name='inswapper', root='weights/models'):
         _, model_file = download_file(get_model_url(name),
                                       save_dir=root,
                                       overwrite=False)
         providers = model_zoo.model_zoo.get_default_providers()
         self.session = model_zoo.model_zoo.PickableInferenceSession(
             model_file, providers=providers)
-        # self.swapper = model_zoo.inswapper.INSwapper(model_file=model_file,
-        #                                              session=session)
 
         model = onnx.load(model_file)
         graph = model.graph
@@ -54,12 +46,7 @@ class InSwapper(BaseSwapper):
         print('inswapper-shape:', self.input_shape)
         self.input_size = tuple(input_shape[2:4][::-1])
 
-        if use_enhancer:
-            self.face_enhance = GFPGAN(name='gfpgan', root=root)
-        self.use_enhancer = use_enhancer
-
     def forward(self, img, latent):
-        # return self.swapper.forward(img, latent)
         img = (img - self.input_mean) / self.input_std
         pred = self.session.run(self.output_names, {
             self.input_names[0]: img,
@@ -68,7 +55,6 @@ class InSwapper(BaseSwapper):
         return pred
 
     def get(self, img, target_face, source_face, paste_back=True):
-        # return self.swapper.get(img, target_face, source_face, paste_back)
         aimg, M = face_align.norm_crop2(img, target_face.kps,
                                         self.input_size[0])
         blob = cv2.dnn.blobFromImage(
@@ -86,9 +72,6 @@ class InSwapper(BaseSwapper):
         })[0]
         img_fake = pred.transpose((0, 2, 3, 1))[0]
         bgr_fake = np.clip(255 * img_fake, 0, 255).astype(np.uint8)[:, :, ::-1]
-        if self.use_enhancer:
-            bgr_fake = self.face_enhance.get(bgr_fake,
-                                             image_format='bgr')[:, :, ::-1]
         if not paste_back:
             return bgr_fake, M
         else:

@@ -1,9 +1,8 @@
-import os
 import numpy as np
 
 import cv2
-import onnxruntime
 
+from insightface.utils import face_align
 from insightface import model_zoo
 from dofaker.utils import download_file, get_model_url
 
@@ -60,7 +59,7 @@ class GFPGAN:
                                 {self.input_names[0]: img})[0]
         return pred
 
-    def get(self, img, image_format='bgr'):
+    def _get(self, img, image_format='bgr'):
         if image_format.lower() == 'bgr':
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         elif image_format.lower() == 'rgb':
@@ -82,4 +81,68 @@ class GFPGAN:
         rgb_aug = np.clip(self.input_std * image_aug + self.input_mean, 0,
                           255).astype(np.uint8)
         rgb_aug = cv2.resize(rgb_aug, (w, h))
-        return rgb_aug
+        bgr_image = rgb_aug[:, :, ::-1]
+        return bgr_image
+
+    def get(self, img, target_face, paste_back=True, image_format='bgr'):
+        aimg, M = face_align.norm_crop2(img, target_face.kps,
+                                        self.input_size[0])
+        bgr_fake = self._get(aimg, image_format='bgr')
+        if not paste_back:
+            return bgr_fake, M
+        else:
+            target_img = img
+            fake_diff = bgr_fake.astype(np.float32) - aimg.astype(np.float32)
+            fake_diff = np.abs(fake_diff).mean(axis=2)
+            fake_diff[:2, :] = 0
+            fake_diff[-2:, :] = 0
+            fake_diff[:, :2] = 0
+            fake_diff[:, -2:] = 0
+            IM = cv2.invertAffineTransform(M)
+            img_white = np.full((aimg.shape[0], aimg.shape[1]),
+                                255,
+                                dtype=np.float32)
+            bgr_fake = cv2.warpAffine(
+                bgr_fake,
+                IM, (target_img.shape[1], target_img.shape[0]),
+                borderValue=0.0)
+            img_white = cv2.warpAffine(
+                img_white,
+                IM, (target_img.shape[1], target_img.shape[0]),
+                borderValue=0.0)
+            fake_diff = cv2.warpAffine(
+                fake_diff,
+                IM, (target_img.shape[1], target_img.shape[0]),
+                borderValue=0.0)
+            img_white[img_white > 20] = 255
+            fthresh = 10
+            fake_diff[fake_diff < fthresh] = 0
+            fake_diff[fake_diff >= fthresh] = 255
+            img_mask = img_white
+            mask_h_inds, mask_w_inds = np.where(img_mask == 255)
+            mask_h = np.max(mask_h_inds) - np.min(mask_h_inds)
+            mask_w = np.max(mask_w_inds) - np.min(mask_w_inds)
+            mask_size = int(np.sqrt(mask_h * mask_w))
+            k = max(mask_size // 10, 10)
+            #k = max(mask_size//20, 6)
+            #k = 6
+            kernel = np.ones((k, k), np.uint8)
+            img_mask = cv2.erode(img_mask, kernel, iterations=1)
+            kernel = np.ones((2, 2), np.uint8)
+            fake_diff = cv2.dilate(fake_diff, kernel, iterations=1)
+            k = max(mask_size // 20, 5)
+            kernel_size = (k, k)
+            blur_size = tuple(2 * i + 1 for i in kernel_size)
+            img_mask = cv2.GaussianBlur(img_mask, blur_size, 0)
+            k = 5
+            kernel_size = (k, k)
+            blur_size = tuple(2 * i + 1 for i in kernel_size)
+            fake_diff = cv2.GaussianBlur(fake_diff, blur_size, 0)
+            img_mask /= 255
+            fake_diff /= 255
+            img_mask = np.reshape(img_mask,
+                                  [img_mask.shape[0], img_mask.shape[1], 1])
+            fake_merged = img_mask * bgr_fake + (
+                1 - img_mask) * target_img.astype(np.float32)
+            fake_merged = fake_merged.astype(np.uint8)
+            return fake_merged

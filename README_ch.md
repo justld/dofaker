@@ -19,11 +19,12 @@
 </p>
 
 # 更新
+- 2023/9/16 更新动作迁移算法
 - 2023/9/14 更新脸部增强算法(GFPGAN)和超分算法(BSRGAN)
 
 # 教程
-- [B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)   
-- [AiStudio在线免费体验](https://aistudio.baidu.com/projectdetail/6759162)   
+- [B站视频使用教程](https://www.bilibili.com/video/BV1b8411i7A8/)  
+- [AiStudio在线免费体验](https://aistudio.baidu.com/projectdetail/6759162)  
 
 
 # 快速开始
@@ -87,7 +88,7 @@ pip install onnxruntime # onnxruntime-gpu
 --------|-inswapper_128.onnx
 --------|-GFPGANv1.3.onnx
 --------|-bsrgan_4.onnx
-|-run.py
+|-run_faceswapper.py
 |-web_ui.py
 ```
 
@@ -103,12 +104,12 @@ python web_ui.py
 ### command
 命令行的使用方法支持一次性多个人脸替换：
 ```bash
-python run.py --source "image or video path to be swapped" --dst_face_paths "dst_face1_path" "dst_face2_path" ... --src_face_paths "src_face1_path" "src_face2_path" ...
+python run_faceswapper.py --source "image or video path to be swapped" --dst_face_paths "dst_face1_path" "dst_face2_path" ... --src_face_paths "src_face1_path" "src_face2_path" ...
 ```
 
 以下的命令会使用src_face1和src_face2替换视频input_video.mp4中的dst_face1和dst_face2 ：
 ```bash
-python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.jpg --src_face_paths src_face1.jpg src_face2.jpg
+python run_faceswapper.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.jpg --src_face_paths src_face1.jpg src_face2.jpg
 ```
 
 |参数|说明|
@@ -129,3 +130,5 @@ python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.
 - [GFPGAN](https://github.com/TencentARC/GFPGAN)  
 - [GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)  
 - [BSRGAN](https://github.com/cszn/BSRGAN)  
+- [pose-transfer](https://github.com/prasunroy/pose-transfer)  
+- [openpose-pytorch](https://github.com/prasunroy/openpose-pytorch)  

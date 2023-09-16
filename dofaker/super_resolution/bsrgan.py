@@ -41,6 +41,7 @@ class BSRGAN:
     def forward(self, image, image_format='bgr'):
         if isinstance(image, str):
             image = cv2.imread(image, 1)
+            image_format = 'bgr'
         elif isinstance(image, np.ndarray):
             if image_format == 'bgr':
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -79,4 +80,5 @@ class BSRGAN:
                           255).astype(np.uint8)
         rgb_aug = cv2.resize(rgb_aug,
                              (int(w * self.scale), int(h * self.scale)))
-        return rgb_aug
+        bgr_aug = rgb_aug[:, :, ::-1]
+        return bgr_aug

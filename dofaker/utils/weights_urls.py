@@ -11,6 +11,10 @@ WEIGHT_URLS = {
     'https://github.com/justld/dofaker/releases/download/v0.1/GFPGANv1.3.onnx',
     'bsrgan':
     'https://github.com/justld/dofaker/releases/download/v0.1/bsrgan_4.onnx',
+    'openpose_body':
+    'https://github.com/justld/dofaker/releases/download/v0.1/openpose_body.onnx',
+    'pose_transfer':
+    'https://github.com/justld/dofaker/releases/download/v0.1/pose_transfer.onnx',
 }
 
 

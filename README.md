@@ -19,10 +19,11 @@ Insightface based face swapping tool to replace faces in videos or images. Windo
 </p>
 
 # Update
+- 2023/9/16 update pose transfer model
 - 2023/9/14 update face enhance(GFPGAN) and image super resolution(BSRGAN)
 
 # Tutorial
-- [dofaker tutorial in youtube：face swap so easy](https://www.youtube.com/watch?v=qd1-JSpiZao)   
+- [dofaker tutorial in youtube：face swap so easy](https://www.youtube.com/watch?v=qd1-JSpiZao)  
 - [colab online](https://colab.research.google.com/drive/1i1hO-_yS6kZdrLden8Mo_hfeHFD-cBt0?usp=sharing)
 
 
@@ -90,7 +91,7 @@ Unzip the zip file, the dir looks like follow:
 --------|-inswapper_128.onnx
 --------|-GFPGANv1.3.onnx
 --------|-bsrgan_4.onnx
-|-run.py
+|-run_faceswapper.py
 |-web_ui.py
 ```
 
@@ -106,12 +107,12 @@ python web_ui.py
 ### command
 You can swap multiple faces in command.
 ```bash
-python run.py --source "image or video path to be swapped" --dst_face_paths "dst_face1_path" "dst_face2_path" ... --src_face_paths "src_face1_path" "src_face2_path" ...
+python run_faceswapper.py --source "image or video path to be swapped" --dst_face_paths "dst_face1_path" "dst_face2_path" ... --src_face_paths "src_face1_path" "src_face2_path" ...
 ```
 
 The command follow will replace dst_face1 and dst_face2 detected in input_video.mp4 with src_face1 and src_face2:
 ```bash
-python run.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.jpg --src_face_paths src_face1.jpg src_face2.jpg
+python run_faceswapper.py --source input_video.mp4 --dst_face_paths dst_face1.jpg dst_face2.jpg --src_face_paths src_face1.jpg src_face2.jpg
 ```
 
 |args|description|
@@ -132,3 +133,5 @@ Do not apply this software to scenarios that violate morality, law, or infringem
 - [GFPGAN](https://github.com/TencentARC/GFPGAN)  
 - [GFPGAN-onnxruntime-demo](https://github.com/xuanandsix/GFPGAN-onnxruntime-demo)  
 - [BSRGAN](https://github.com/cszn/BSRGAN)  
+- [pose-transfer](https://github.com/prasunroy/pose-transfer)  
+- [openpose-pytorch](https://github.com/prasunroy/openpose-pytorch)  

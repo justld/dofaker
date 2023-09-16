@@ -7,17 +7,20 @@ from moviepy.editor import VideoFileClip
 from .face_det import FaceAnalysis
 from .super_resolution import BSRGAN
 from dofaker.face_swap import get_swapper_model
+from dofaker.face_enhance import GFPGAN
 
 
-class DoFaker:
+class FaceSwapper:
 
     def __init__(self,
                  face_det_model='buffalo_l',
                  face_swap_model='inswapper',
                  image_sr_model='bsrgan',
+                 face_enhance_model='gfpgan',
                  face_det_model_dir='weights/models',
                  face_swap_model_dir='weights/models',
                  image_sr_model_dir='weights/models',
+                 face_enhance_model_dir='weights/models',
                  face_sim_thre=0.5,
                  log_iters=10,
                  use_enhancer=True,
@@ -31,14 +34,21 @@ class DoFaker:
         self.det_model.prepare(ctx_id=1, det_size=(640, 640))
 
         self.swapper_model = get_swapper_model(name=face_swap_model,
-                                               root=face_swap_model_dir,
-                                               use_enhancer=use_enhancer)
+                                               root=face_swap_model_dir)
+        if use_enhancer:
+            self.face_enhance = GFPGAN(name=face_enhance_model,
+                                       root=face_enhance_model_dir)
+        else:
+            self.face_enhance = None
+
         if use_sr:
             self.sr = BSRGAN(name=image_sr_model,
                              root=image_sr_model_dir,
                              scale=scale)
+            self.scale = scale
         else:
             self.sr = None
+            self.scale = scale
 
     def run(self,
             input_path: str,
@@ -86,8 +96,9 @@ class DoFaker:
         temp_video_path = os.path.join(output_dir,
                                        'temp_{}.mp4'.format(video_name))
         save_video_path = os.path.join(output_dir, '{}.mp4'.format(video_name))
-        output_video = cv2.VideoWriter(temp_video_path, four_cc, fps,
-                                       frame_size)
+        output_video = cv2.VideoWriter(
+            temp_video_path, four_cc, fps,
+            (int(frame_size[0] * self.scale), int(frame_size[1] * self.scale)))
 
         i = 0
         while video.isOpened():
@@ -178,8 +189,13 @@ class DoFaker:
                                              image_faces[idx],
                                              src_faces[i],
                                              paste_back=True)
+                if self.face_enhance is not None:
+                    res = self.face_enhance.get(res,
+                                                image_faces[idx],
+                                                paste_back=True)
+
         if self.sr is not None:
-            res = self.sr.get(res, image_format='bgr')[:, :, ::-1]
+            res = self.sr.get(res, image_format='bgr')
         return res
 
     def swap_all_faces(self, image, src_faces: list) -> np.ndarray:
@@ -194,8 +210,10 @@ class DoFaker:
                                          image_face,
                                          src_faces[0],
                                          paste_back=True)
+            if self.face_enhance is not None:
+                res = self.face_enhance.get(res, image_face, paste_back=True)
         if self.sr is not None:
-            res = self.sr.get(res, image_format='bgr')[:, :, ::-1]
+            res = self.sr.get(res, image_format='bgr')
         return res
 
     def get_faces_embeddings(self, faces):
