@@ -22,8 +22,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def swap_face(input_path, dst_path, src_path, use_enhancer, use_sr, scale):
-    faker = FaceSwapper(use_enhancer=use_enhancer, use_sr=use_sr, scale=scale)
+def swap_face(input_path, dst_path, src_path, use_enhancer, use_sr, scale,
+              face_sim_thre):
+    faker = FaceSwapper(use_enhancer=use_enhancer,
+                        use_sr=use_sr,
+                        scale=scale,
+                        face_sim_thre=face_sim_thre)
     output_path = faker.run(input_path, dst_path, src_path)
     return output_path
 
@@ -67,12 +71,18 @@ def main():
                                 info="Whether use image resolution model.")
                             scale = gr.Number(
                                 value=1, label='image super resolution scale')
+                        with gr.Row():
+                            face_sim_thre = gr.Number(
+                                value=0.6,
+                                label='face similarity threshold',
+                                minimum=0.0,
+                                maximum=1.0)
                         convert_button = gr.Button('Swap')
                         convert_button.click(fn=swap_face,
                                              inputs=[
                                                  image_input, dst_face_image,
                                                  src_face_image, use_enhancer,
-                                                 use_sr, scale
+                                                 use_sr, scale, face_sim_thre
                                              ],
                                              outputs=[output_image],
                                              api_name='image swap')
@@ -103,12 +113,18 @@ def main():
                                 info="Whether use image resolution model.")
                             scale = gr.Number(
                                 value=1, label='image super resolution scale')
+                        with gr.Row():
+                            face_sim_thre = gr.Number(
+                                value=0.6,
+                                label='face similarity threshold',
+                                minimum=0.0,
+                                maximum=1.0)
                         convert_button = gr.Button('Swap')
                         convert_button.click(fn=swap_face,
                                              inputs=[
                                                  video_input, dst_face_image,
                                                  src_face_image, use_enhancer,
-                                                 use_sr, scale
+                                                 use_sr, scale, face_sim_thre
                                              ],
                                              outputs=[output_video],
                                              api_name='video swap')
