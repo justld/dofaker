@@ -179,6 +179,8 @@ class FaceSwapper:
                    src_faces: list) -> np.ndarray:
         res = image.copy()
         image_faces = self.det_model.get(image)
+        if len(image_faces) == 0:
+            return res
         image_face_embeddings = self.get_faces_embeddings(image_faces)
         sim = np.dot(dst_face_embeddings, image_face_embeddings.T)
 
@@ -205,6 +207,8 @@ class FaceSwapper:
             len(src_faces))
         res = image.copy()
         image_faces = self.det_model.get(image)
+        if len(image_faces) == 0:
+            return res
         for image_face in image_faces:
             res = self.swapper_model.get(res,
                                          image_face,
