@@ -4,7 +4,7 @@ with open('requirements.txt') as file:
     REQUIRED_PACKAGES = file.read()
 
 setup(name='dofaker',
-      version='0.0',
+      version='0.1',
       keywords=('face swap'),
       description='A simple face swap tool',
       url='https://github.com/justld/dofaker',
