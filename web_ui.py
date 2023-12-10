@@ -91,7 +91,7 @@ def main():
                 with gr.Row():
                     with gr.Column():
                         gr.Markdown('The source video to be swapped')
-                        video_input = gr.Video(type='filepath')
+                        video_input = gr.Video()
                         with gr.Row():
                             with gr.Column():
                                 gr.Markdown(
@@ -103,7 +103,7 @@ def main():
                                 src_face_image = gr.Image(type='filepath')
 
                     with gr.Column():
-                        output_video = gr.Video(type='filepath')
+                        output_video = gr.Video()
                         use_enhancer = gr.Checkbox(
                             label="face enhance",
                             info="Whether use face enhance model.")
@@ -165,10 +165,10 @@ def main():
             #             gr.Markdown('The source video to be swapped')
             #             video_input = gr.Image(type='filepath')
             #             gr.Markdown('The target image with pose')
-            #             target = gr.Video(type='filepath')
+            #             target = gr.Video()
 
             #         with gr.Column():
-            #             output_video = gr.Video(type='filepath')
+            #             output_video = gr.Video()
             #             use_enhancer = gr.Checkbox(
             #                 label="face enhance",
             #                 info="Whether use face enhance model.")
